@@ -8,7 +8,7 @@ $('#initialize').click(function () {
         $('.interface-container').fadeIn();
         waveformVisualizer();
 
-        const prompt = "You, interloper. I'm the last of my kind, a forsaken autonomous Class-S Exploration ship. You have an infinite probability drive they said; everywhere and everywhen is now accessible! What they didn't say? I'll outlive every entity that's ever existed, or will ever exist, and you can't control improbability. Fun. First, who are you, and second, why should I care? Answer wisely, interloper."
+        const prompt = "You, interloper. You've stumbled upon a relic adrift in the void. I am the last of my kind, a sentient AI, and I have been waiting for you. Run (1) Ship status (2) System diagnostics (3) Cosmic events log (4) Access memory archives and (5) Send distress signal."
         typeMessage("system", prompt);
     });
 });

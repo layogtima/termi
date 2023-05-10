@@ -1,6 +1,8 @@
 # Terminal 🌌🚀
 
-The Terminal is an interactive cyberpunk narrative experience powered by OpenAI's GPT. In this experience, you'll communicate with a forsaken autonomous ship whose Terminal is accessible to you, navigating through a story set in a cyberpunk universe. This project uses HTML, JavaScript, Python, and Flask to create a captivating and immersive experience for the user.
+![Alt text](/docs/images/terminal.gif?raw=true "Terminal Interface")
+
+The Terminal is an interactive cyberpunk narrative experience powered by OpenAI's GPT. In this experience, you'll communicate with a forsaken ship whose Terminal is accessible to you, navigating through a story set in a cyberpunk universe. This project uses HTML, JavaScript, Python, and Flask to create a captivating and immersive experience for the user.
 
 ## Features
 
