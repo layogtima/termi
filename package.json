@@ -1,0 +1,19 @@
+{
+  "name": "terminal",
+  "version": "1.0.0",
+  "description": "Terminal is a peak into an altertnative reality where the Terminal is the only way to interact with the computer.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Layogtima (amit@absurd.industries)",
+  "license": "GPL 3",
+  "devDependencies": {
+    "@babel/cli": "^7.21.5",
+    "@babel/core": "^7.21.8"
+  },
+  "dependencies": {
+    "animejs": "^3.2.1"
+  }
+}

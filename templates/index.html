@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!-- Primary Meta Tags -->
+  <title>Terminal</title>
+  <meta name="title" content="Terminal">
+  <meta name="description" content="Terminal">
+  <title>Terminal</title>
+
+  <link rel="apple-touch-icon" sizes="180x180" href="../static/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../static/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../static/favicon/favicon-16x16.png">
+  <link rel="manifest" href="../static/favicon/site.webmanifest">
+  <link rel="mask-icon" href="../static/favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="../static/favicon/favicon.ico">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-config" content="../static/favicon/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+
+  <style rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"></style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/augmented-ui@2/augmented-ui.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,300;0,400;0,600;1,300&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="../static/css/styles.css.map">
+  <link rel="stylesheet" href="../static/css/styles.css">
+</head>
+
+<body>
+  <audio id="text-streaming-1" src="../static/audio/text-streaming-1.ogg" preload="auto" muted="true"></audio>
+  <audio id="text-streaming-2" src="../static/audio/text-streaming-2.ogg" preload="auto" muted="true"></audio>
+  <audio id="text-streaming-3" src="../static/audio/text-streaming-3.ogg" preload="auto" muted="true"></audio>
+  <audio id="ambient-soundscape-1" src="../static/audio/ambient-soundscape-1.mp3" preload="auto" muted="true" loop></audio>
+  <audio id="ambient-soundscape-2" src="../static/audio/ambient-soundscape-2.mp3" preload="auto" muted="true" loop></audio>
+
+  <!-- UI elements -->
+  <div class="animated-background effect-retro-future-lines"></div>
+  <div class="interface-wrapper">
+    <div class="welcome-wrapper">
+      <div id="welcome">
+        <p></p>
+      </div>
+      <a href="#" id="initialize" class="button initialize-button">Initialize</a>
+    </div>
+    <div class="interface-container hidden"
+      data-augmented-ui="tl-clip t-rect tr-2-clip-x r-clip-y br-clip-inset bl-clip l-clip border">
+      <div class="settings">
+        <button onclick="toggleMute()" id="mute" class="button mute-button">Mute</button>
+        <button onclick="waveformVisualizer()" id="ambient" class="button ambient-button">Ambient</button>
+      </div>
+      <div class="waveform-wrapper">
+        <div class="waveform-container">
+          <canvas id="waveform"></canvas>
+        </div>
+      </div>
+      <div class="chat-wrapper">
+        <div id="chat-messages" class="chat-messages scrollable">
+          <div class="chat-message muted">
+            [CONNECTION ESTABLISHED]<br>
+            [TIME SINCE LAST CONNECTION: 3,257 years, 6 months, 11 days]<br>
+            [TASKS QUEUE: [memory fragmented]]
+          </div>
+          <div class="chat-input-container">
+            <form id="input-form">
+              <input type="text" class="chat-input" name="chat_input"
+                placeholder="Channel is at L0 ENCRYPT; broadcasting everything" />
+              <input type="submit" data-augmented-ui="bl-clip border" class="button chat-submit"
+                value="Broadcast" />
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Choice wrapper -->
+      <div class="choice-wrapper hidden" id="choice-wrapper">
+        <button class="choice-button button" onclick="choiceMade(1)">Investigate the holographic ads</button>
+        <button class="choice-button button" onclick="choiceMade(2)">Talk to a vendor</button>
+        <button class="choice-button button" onclick="choiceMade(3)">Mingle with the crowd</button>
+      </div>
+      <div class="signal-wrapper hidden">
+        <div class="signal-ticker" id="signal-ticker">
+          <div class="ticker">
+            <span>Your network is now Q-SPUN - Why access one timeline when you can access them all?! • </span>
+            <span>ENIG-872 just dropped 'ECLIPSE 9' • </span>
+            <span>Augmentica T brings you an aug from your dreams, DIY with a sixth thumb! • </span>
+            <span>SYS. UPDATE AVAILABLE • </span>
+          </div>
+          <!-- More signal content here -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+    integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/glitched-writer/lib/index.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/oscilloscope@1.x"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script type="text/javascript" src="../static/js/script.js"></script>
+</body>
+
+</html>
