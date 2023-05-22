@@ -83,6 +83,7 @@ Contributions are welcome! Feel free to submit pull requests or open issues on G
 - Deeksa
 - Purav
 - Chetan
+- Preet
 
 ## 📄 License
 
