@@ -80,6 +80,9 @@ Contributions are welcome! Feel free to submit pull requests or open issues on G
 ## Thank you play testers!
 - Rohit
 - Parna
+- Deeksa
+- Purav
+- Chetan
 
 ## 📄 License
 
