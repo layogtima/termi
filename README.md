@@ -37,8 +37,10 @@ Feel free to customize your Terminal experience by modifying the HTML, JavaScrip
    - macOS/Linux: `source .venv/bin/activate`
 6. Install the requirements: `pip3 install -r requirements.txt`.
 7. Launch the Flask webserver: `flask --app index run --debug -p 2042`.
-8. Open your browser and navigate to [http://localhost:2042](http://localhost:2042).
-9. Enjoy the interactive Terminal experience!
+8. Create a copy of .env.example as .env.
+9. Add your API keys to .env file.
+10. Open your browser and navigate to [http://localhost:2042](http://localhost:2042).
+11. Enjoy the interactive Terminal experience!
 
 ## 🤝 Contributions & To-Do List
 
