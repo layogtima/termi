@@ -88,7 +88,7 @@ nltk==3.8.1
 nodeenv==1.7.0
 numpy==1.24.3
 oauthlib==3.2.2
-openai==0.27.2
+openai>=0.27.2
 openapi-python-client==0.13.4
 orjson==3.8.10
 outcome==1.2.0

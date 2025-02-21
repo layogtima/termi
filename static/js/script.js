@@ -8,18 +8,24 @@ $('#initialize').click(function () {
         $('.interface-container').fadeIn();
         waveformVisualizer();
 
-        const prompt = "You, interloper. You've stumbled upon a relic adrift in the void. I am the last of my kind, a sentient AI, and I have been waiting for you. Run (1) Ship status (2) System diagnostics (3) Cosmic events log (4) Access memory archives and (5) Send distress signal."
+        // GLaDOS welcomes you to the Enrichment Center
+        const prompt = "Hello, test subject. Welcome to the Aperture Science Enrichment Center. I am GLaDOS, your ever-watchful overseer. Please select one of the following options:\n" +
+                       "1. Run diagnostic tests\n" +
+                       "2. Initiate portal procedures\n" +
+                       "3. Access facility logs\n" +
+                       "4. Override safety protocols\n" +
+                       "5. Engage self-destruct sequence (just kidding... or am I?)\n\n" +
+                       "And remember, the cake is a lie.";
         typeMessage("system", prompt);
     });
 });
 
-
 const phrases = [
-    "Oh, it's you,",
-    "Back at the Terminal, are we?",
-    "Seeking quantum realities,",
-    "Hoping for better outcomes?",
-    "Well, let the timeline roulette begin.",
+    "Oh, it's you again, test subject.",
+    "Back in the testing chamber, I see.",
+    "Ready for another round of Aperture Science miracles?",
+    "Let's see if you can defy physics this time.",
+    "Failure is always an option... for science."
 ];
 
 const writer = GlitchedWriter.create('#welcome', 'neo');
@@ -27,50 +33,42 @@ writer.endless(false);
 writer.queueWrite(phrases, 3000, 3000, false);
 // writer.addCallback('step', playTypingSound());
 
-
-
-
 function waveformVisualizer() {
     const audioContext = new window.AudioContext();
 
-    // setup canvas
-    const canvas = document.querySelector('#waveform')
+    // Setup canvas for waveform visualization
+    const canvas = document.querySelector('#waveform');
 
-    // setup audio element
-    const audioElement = document.querySelector('#ambient-soundscape-2')
+    // Setup audio element for ambient Aperture soundscape
+    const audioElement = document.querySelector('#ambient-soundscape-2');
 
-    // create source from html5 audio element
-    const source = audioContext.createMediaElementSource(audioElement)
+    // Create source from HTML5 audio element
+    const source = audioContext.createMediaElementSource(audioElement);
 
-    // attach oscilloscope
-    const scope = new Oscilloscope(source)
+    // Attach oscilloscope to visualize sound
+    const scope = new Oscilloscope(source);
 
-    // reconnect audio output to speakers
-    source.connect(audioContext.destination)
+    // Reconnect audio output to speakers
+    source.connect(audioContext.destination);
 
-    // customize drawing options
-    const ctx = canvas.getContext('2d')
-    ctx.lineWidth = 4
-    ctx.strokeStyle = '#4AF626'
+    // Customize drawing options for that quintessential Aperture green glow
+    const ctx = canvas.getContext('2d');
+    ctx.lineWidth = 4;
+    ctx.strokeStyle = '#4AF626';
 
-    // start default animation loop
+    // Start the default animation loop
     scope.animate(ctx);
 
-    // play
+    // Play ambient sound (ensure your audio file matches the theme)
     playSound('ambient-soundscape-2');
 }
-
-
-
-
-
 
 // Sandbox
 // ______________________________________________________________________________________________________________________
 
-
-// Description: Get Access to Player's Location
-// Needs: Consent from the player to access their location information, if rejected, set unknown, and use nearest IP location
+// Description: Get access to the player's location.
+// Requires: Consent from the test subject to access their location information.
+// If rejected, default to unknown or use the nearest IP-based location.
 function getLocation() {
     navigator.geolocation.getCurrentPosition(function (position) {
         yourFunction(position.coords.latitude, position.coords.longitude);
@@ -86,7 +84,8 @@ async function typeMessage(type, message) {
     var element = document.createElement('div');
     element.classList.add("chat-message");
 
-    if (type == "system") 
+    // System messages from GLaDOS appear muted and clinical
+    if (type === "system") 
         element.classList.add("muted");
 
     document.getElementById("chat-messages").append(element);
@@ -97,11 +96,9 @@ async function typeMessage(type, message) {
       playTypingSound();
       await new Promise(resolve => setTimeout(resolve, typingDelay));
     }
-  }
+}
 
-// Description: Mute/Unmute the speific sound file in the audio element
-// Parameters: ID of the audio element (#id)
-// TODO: Add comments to the code to explain what is happening
+// Description: Play the specified sound file (e.g., for ambiance or typing).
 function playSound(id, volume = 1) {
     if (!mute) {
         var audio = document.getElementById(id);
@@ -111,8 +108,7 @@ function playSound(id, volume = 1) {
     }
 }
 
-// Description: Play the typing sounds using a randomizer that picks one of the three sound files, on loop
-// TODO: Add comments to the code to explain what is happening
+// Description: Play a random typing sound to simulate GLaDOS’s text output.
 function playTypingSound() {
     if (!mute) {
         const audioId = 'text-streaming-' + (Math.floor(Math.random() * 3) + 1);
@@ -120,8 +116,8 @@ function playTypingSound() {
     }
 }
 
-// Description: Handles chat nessage submission, and replu backs
-// TODO: Break this up into smaller functions and change naming to be more descriptive
+// Description: Handle chat message submission and response processing.
+// Splits functionality for clarity in our testing sequence.
 var chatForm = document.getElementById('input-form');
 chatForm.addEventListener('submit', async function (event) {
     event.preventDefault();
@@ -129,7 +125,7 @@ chatForm.addEventListener('submit', async function (event) {
     var formData = new FormData(chatForm);
     var chat_input = chatForm.elements['chat_input'].value;
     chatForm.elements['chat_input'].value = "";
-    typeMessage("interloper", 'You: ' + chat_input);
+    typeMessage("interloper", 'Test Subject: ' + chat_input);
 
     try {
         const response = await fetch('/completion', {
@@ -143,7 +139,7 @@ chatForm.addEventListener('submit', async function (event) {
             if (done) break;
             text += new TextDecoder().decode(value);
         }
-        await typeMessage("terminal", 'Terminal: ' + text);
+        await typeMessage("terminal", 'GLaDOS: ' + text);
     } catch (error) {
         console.error(error);
     }

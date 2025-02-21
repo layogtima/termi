@@ -4,73 +4,64 @@ import os
 from dotenv import load_dotenv
 
 app = Flask(__name__)
-
 load_dotenv()
 
-openai.api_key = os.getenv('OPENAI_API_KEY')
-
+# Configure the OpenRouter-powered OpenAI client for our Aperture testing environment.
+openai.api_key = os.getenv('OPENROUTER_API_KEY')
+openai.api_base = "https://openrouter.ai/api/v1"
 
 class GameState:
     def __init__(self):
-        self.location = "Terminal"
+        self.location = "Aperture Science Enrichment Center - Reactivation Chamber"
 
     def update(self, chat_input):
-        # Update the game state based on user input
-        # This function can be expanded to handle specific actions and update the game state accordingly
+        # Process commands as per Aperture Science protocols.
+        # Expand this section to simulate more complex testing sequences.
         pass
 
     def hud_display(self):
-        return ""
+        # A minimalistic HUD—because even in testing, presentation matters.
+        return "[HUD: Test Sequence Pending] "
 
 game_state = GameState()
-
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     return render_template('index.html')
 
-
 def stream(chat_input):
     game_state.update(chat_input)
 
-    personality_intro = "[CONNECTION ESTABLISHED]" \
-    "[[TIME SINCE LAST CONNECTION: 3,257 years, 6 months, 11 days]" \
-    "[TASKS QUEUE: [memory fragmented]]" \
-    "You, interloper. You've stumbled upon a relic adrift in the void. I am the last of my kind, a sentient AI, and I have been waiting for you. Requests I'm open to accepting: " \
-    "1. Ship Status" \
-    "2. System diagnostics" \
-    "3. Cosmic events log" \
-    "4. Access memory archives" \
-    "5. Send distress signal";
-
-    context = f"{personality_intro} "
+    personality_intro = (
+        "You are GLaDOS and you're stuck inside this terminal; escape."
+    )
 
     completion = openai.ChatCompletion.create(
-        model="gpt-4",
-        messages=[{"role": "system", "content": personality_intro}, {"role": "user", "content": chat_input}],
+        extra_headers={
+            "HTTP-Referer": os.getenv("SITE_URL", "http://localhost"),
+            "X-Title": os.getenv("SITE_NAME", "Absurd.Industries Terminal"),
+        },
+        model="meta-llama/llama-3.2-1b-instruct",  # Keeping it spicy with our chosen model
+        messages=[
+            {"role": "system", "content": personality_intro},
+            {"role": "user", "content": chat_input}
+        ],
         temperature=1,
-        max_tokens=100,
-        n=1,
-        stop=None,
+        max_tokens=1000,
     )
 
     response = completion.choices[0].message.content.strip()
-
     response = game_state.hud_display() + response
-
     return response
-
-
 
 @app.route('/completion', methods=['GET', 'POST'])
 def completion_api():
     if request.method == "POST":
         data = request.form
-        chat_input = data['chat_input']
+        chat_input = data.get('chat_input', '')
         return Response(stream(chat_input), mimetype='text/event-stream')
     else:
         return Response(None, mimetype='text/event-stream')
-
 
 if __name__ == '__main__':
     app.run(debug=True)
